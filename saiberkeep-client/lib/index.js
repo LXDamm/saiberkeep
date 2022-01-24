@@ -1,27 +1,20 @@
-const statusElm = document.getElementById('status');
-
-const init = () => {
-  if (window.isSecureContext) {
-    statusElm.innerText = 'Secure context';
-  } else {
-    statusElm.innerText = 'No secure context';
+const scanButton = document.getElementById('scan-button');
+const statusP = document.getElementById('status');
+scanButton.addEventListener("click", async () => {
+  try {
+    const ndef = new NDEFReader();
+    await ndef.scan();
+    statusP.innerText = 'Scan started';
+    ndef.addEventListener("readingerror", () => {
+      statusP.innerText = 'Cant read';
+    });
+    ndef.addEventListener("reading", ({
+      message,
+      serialNumber
+    }) => {
+      statusP.innerText = 'Worked';
+    });
+  } catch (error) {
+    statusP.innerText = 'Error';
   }
-
-  const reader = new NDEFReader();
-  let read = reader.scan();
-  read.then(event => {
-    statusElm.innerText = 'Scan started successfully.';
-
-    ndef.onreadingerror = event => {
-      statusElm.innerText = 'Error! Cannot read data from the NFC tag. Try a different one?';
-    };
-
-    ndef.onreading = event => {
-      statusElm.innerText = 'NDEF message read.';
-    };
-  }).catch(error => {
-    statusElm.innerText = `Error! Scan failed to start: ${error}.`;
-  });
-};
-
-init();
+});

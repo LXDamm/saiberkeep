@@ -1,22 +1,21 @@
 const scanButton = document.getElementById('scan-button');
+const statusP = document.getElementById('status');
 
 scanButton.addEventListener("click", async () => {
-  log("User clicked scan button");
 
   try {
     const ndef = new NDEFReader();
     await ndef.scan();
-    log("> Scan started");
+    statusP.innerText = 'Scan started';
 
     ndef.addEventListener("readingerror", () => {
-      log("Argh! Cannot read data from the NFC tag. Try another one?");
+      statusP.innerText = 'Cant read';
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
-      log(`> Serial Number: ${serialNumber}`);
-      log(`> Records: (${message.records.length})`);
+      statusP.innerText = 'Worked';
     });
   } catch (error) {
-    log("Argh! " + error);
+    statusP.innerText = 'Error';
   }
 });
