@@ -13,8 +13,9 @@ const ndefSyncRead = async (ndef) => {
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
       let html = '<ul>';
-      message.records.forEach(element => {
-        html = html + '<li>' + element + '</li>';
+      message.records.forEach(record => {
+        const textDecoder = new TextDecoder(record.encoding);
+        html = html + '<li>' + textDecoder.decode(record.data) + '</li>';
       });
       html = html + '</ul>';
       nfcStatusP.innerHTML = html;
