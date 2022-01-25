@@ -29,7 +29,7 @@ class App {
             if (message.records.length) {
                 message.records.forEach((record) => {
                     if (record.recordType === 'text') {
-                        this.records.push(this.textDecoder.decode(record));
+                        this.records.push(this.textDecoder.decode(record.data));
                     }
                 });
             } else {
