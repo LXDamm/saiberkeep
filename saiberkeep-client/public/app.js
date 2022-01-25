@@ -21,7 +21,7 @@ class App {
     sync = async () => {
         this.setText('Beginning sync...');
         this.syncRead();
-        this.addEventListener('syncread', () => {
+        document.addEventListener('syncread', () => {
             this.setText('Records read and saved');
             this.records.forEach(record => {
                 console.log(record);
@@ -43,7 +43,7 @@ class App {
                         this.records.push(this.textDecoder.decode(record.data));
                     }
                 });
-                this.dispatchEvent(syncReadEvent);
+                document.dispatchEvent(syncReadEvent);
             } else {
                 this.setText('Zero NDEF records on implant/card');
             }
