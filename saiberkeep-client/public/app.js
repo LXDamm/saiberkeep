@@ -8,10 +8,12 @@ class App {
     sync = async () => {
         this.statusText.innerText = 'Beginning sync...';
     }
-    syncRead = () => {
+    syncRead = async () => {
         await this.ndef.scan();
     }
-    syncWrite = () => {
+    syncWrite = async () => {
 
     }
 }
+
+export default App;
