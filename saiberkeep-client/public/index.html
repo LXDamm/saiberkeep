@@ -22,7 +22,7 @@
     if ('NDEFReader' in window) {
       try {
         const ndef = new NDEFReader();
-        const textDecoder = new TextDecoder('text');
+        const textDecoder = new TextDecoder('utf-8');
         const app = new App(ndef, textDecoder);
         app.run();
       } catch (error) {
