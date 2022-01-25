@@ -11,8 +11,11 @@
 <body>
   <button id="sync-button">Sync implant/card</button>
   <p id="nfc-status"></p>
-  <script type="module" src="index.js"></script>
-  <script>
+  <script type="module">
+    "use strict";
+
+    import { ndefRead } from 'js/index.js';
+
     const nfcStatusP = document.getElementById('nfc-status');
     const syncButton = document.getElementById('sync-button');
 
@@ -21,6 +24,10 @@
     } catch (error) {
       nfcStatusP.innerText = 'Error';
     }
+
+    syncButton.addEventListener('click', event => {
+      ndefRead(ndef);
+    });
   </script>
 </body>
 

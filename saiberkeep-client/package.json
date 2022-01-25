@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "babel src -d public"
+    "build": "babel src -d public/js"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
