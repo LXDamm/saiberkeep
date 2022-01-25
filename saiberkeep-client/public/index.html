@@ -22,7 +22,7 @@
     if ('NDEFReader' in window) {
       try {
         const ndef = new NDEFReader();
-        const app = new App(ndef, nfcStatusElm);
+        const app = new App(ndef, TextDecoder);
         app.run();
       } catch (error) {
         nfcStatusElm.innerText = 'Error: ' + error;

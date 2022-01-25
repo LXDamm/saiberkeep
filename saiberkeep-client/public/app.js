@@ -2,8 +2,9 @@ const syncButtonElm = document.getElementById('sync-button');
 class App {
     ndef = undefined;
     records = [];
-    constructor(ndef) {
+    constructor(ndef, TextDecoder) {
         this.ndef = ndef;
+        this.TextDecoder = TextDecoder;
     }
     setText = (text) => {
         const statusTextElm = document.getElementById('nfc-status');
@@ -28,7 +29,7 @@ class App {
             if (message.records.length) {
                 message.records.forEach((record) => {
                     if (record.recordType === 'text') {
-                        const textDecoder = new TextDecoder(record.encoding);
+                        const textDecoder = new this.TextDecoder(record.encoding);
                         this.records.push(textDecoder(record));
                     }
                 });
