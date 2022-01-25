@@ -18,6 +18,10 @@ class App {
     sync = async () => {
         this.setText('Beginning sync...');
         this.syncRead();
+        this.setText('Records read and saved');
+        this.records.forEach(record => {
+            console.log(record);
+        });
     };
     syncRead = async () => {
         await this.ndef.scan();
