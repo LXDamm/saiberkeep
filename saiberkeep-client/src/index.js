@@ -12,9 +12,12 @@ const ndefSyncRead = async (ndef) => {
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
+      let html = '<ul>';
       message.records.forEach(element => {
-        nfcStatusP.innerText =+ element;
+        html = html + '<li>' + element + '</li>';
       });
+      html = html + '</ul>';
+      nfcStatusP.innerHTML = html;
     });
   } catch (error) {
     nfcStatusP.innerText = 'Error: ' + error;
