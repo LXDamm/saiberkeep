@@ -5,29 +5,29 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="styles.css" />
+  <title>Saiberkeep</title>
 </head>
 
 <body>
-  <button id="sync-button">Sync implant/card</button>
+  <button id="sync-button">initate implant/card sync</button>
   <p id="nfc-status"></p>
   <script type="module">
-    "use strict";
+    'use strict';
 
-    import { ndefSyncRead } from './index.js';
+    import { ndefInit, ndefSyncRead } from './index.js';
 
     const nfcStatusP = document.getElementById('nfc-status');
-    const syncButton = document.getElementById('sync-button');
 
-    try {
-      const ndef = new NDEFReader();
-
-      syncButton.addEventListener('click', event => {
-        ndefSyncRead(ndef);
-      });
-    } catch (error) {
-      nfcStatusP.innerText = 'Error: ' + error;
+    if ('NDEFReader' in window) {
+      try {
+        const ndef = new NDEFReader();
+        ndefInit(ndef);
+      } catch (error) {
+        nfcStatusP.innerText = 'Error: ' + error;
+      }
+    } else {
+      nfcStatusP.innerText = 'No NFC support, try a Android phone with NFC enabled running latest Chrome Android';
     }
   </script>
 </body>
