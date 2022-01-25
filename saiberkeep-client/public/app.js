@@ -1,15 +1,21 @@
+const syncButtonElm = document.getElementById('sync-button');
+const statusTextElm = document.getElementById('nfc-status');
 class App {
     ndef = undefined;
-    statusText = undefined;
-    constructor(ndef, statusTextElm) {
+    constructor(ndef) {
         this.ndef = ndef;
-        this.statusText = statusTextElm;
+    }
+    run = () => {
+        syncButtonElm.addEventListener('click', () => {
+            this.sync();
+        });
     }
     sync = async () => {
-        this.statusText.innerText = 'Beginning sync...';
+        statusTextElm.innerText = 'Beginning sync...';
     }
     syncRead = async () => {
         await this.ndef.scan();
+        statusTextElm.innerText = 'Scan complete';
     }
     syncWrite = async () => {
 
