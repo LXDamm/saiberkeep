@@ -1,9 +1,13 @@
 "use strict"
 
+import App from 'app.js';
+
 const nfcStatusP = document.getElementById('nfc-status');
 
-const ndefInit = async (ndef) => {
+const app;
 
+const ndefInit = async (ndef) => {
+  app = new App(ndef);
 }
 
 const ndefSyncRead = async (ndef) => {

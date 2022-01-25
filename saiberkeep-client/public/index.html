@@ -15,19 +15,19 @@
   <script type="module">
     'use strict';
 
-    import { ndefInit, ndefSyncRead } from './index.js';
+    import App from './app.js';
 
-    const nfcStatusP = document.getElementById('nfc-status');
+    const nfcStatusElm = document.getElementById('nfc-status');
 
     if ('NDEFReader' in window) {
       try {
         const ndef = new NDEFReader();
-        ndefInit(ndef);
+        const app = new App(ndef, nfcStatusElm);
       } catch (error) {
-        nfcStatusP.innerText = 'Error: ' + error;
+        nfcStatusElm.innerText = 'Error: ' + error;
       }
     } else {
-      nfcStatusP.innerText = 'No NFC support, try a Android phone with NFC enabled running latest Chrome Android';
+      nfcStatusElm.innerText = 'No NFC support, try a Android phone with NFC enabled and running latest Chrome Android';
     }
   </script>
 </body>
