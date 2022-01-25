@@ -14,20 +14,20 @@
   <script type="module">
     "use strict";
 
-    import { ndefRead } from 'js/index.js';
+    import { ndefRead } from 'js/saiberkeep.bundle.js';
 
     const nfcStatusP = document.getElementById('nfc-status');
     const syncButton = document.getElementById('sync-button');
 
     try {
       const ndef = new NDEFReader();
-    } catch (error) {
-      nfcStatusP.innerText = 'Error';
-    }
 
-    syncButton.addEventListener('click', event => {
-      ndefRead(ndef);
-    });
+      syncButton.addEventListener('click', event => {
+        ndefRead(ndef);
+      });
+    } catch (error) {
+      nfcStatusP.innerText = 'Error: ' + error;
+    }
   </script>
 </body>
 

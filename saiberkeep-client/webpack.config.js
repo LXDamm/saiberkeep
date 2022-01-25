@@ -1,4 +1,11 @@
+const path = require('path');
+
 module.exports = {
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'public/js'),
+        filename: 'saiberkeep.bundle.js',
+    },
     module: {
         rules: [
             {
