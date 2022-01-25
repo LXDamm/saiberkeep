@@ -2,20 +2,26 @@
 
 const nfcStatusP = document.getElementById('nfc-status');
 
+const ndefInit = async (ndef) => {
+
+}
+
 const ndefSyncRead = async (ndef) => {
   try {
     await ndef.scan();
-    nfcStatusP.innerText = 'Sync started';
+    nfcStatusP.innerText = 'Sync read started...';
 
     ndef.addEventListener("readingerror", () => {
       nfcStatusP.innerText = 'Error reading data from implant/card';
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
-      let html = '<ul>';
+      nfcStatusP.innerText = 'Reading records...';
       message.records.forEach(record => {
-        const textDecoder = new TextDecoder(record.encoding);
-        html = html + '<li>' + textDecoder.decode(record.data) + '</li>';
+        if (record.recordType === 'text') {
+          const textDecoder = new TextDecoder(record.encoding);
+
+        }
       });
       html = html + '</ul>';
       nfcStatusP.innerHTML = html;
@@ -25,4 +31,4 @@ const ndefSyncRead = async (ndef) => {
   }
 };
 
-export { ndefSyncRead };
+export { ndefInit, ndefSyncRead };
