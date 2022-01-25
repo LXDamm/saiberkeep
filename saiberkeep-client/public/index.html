@@ -23,7 +23,7 @@
       const ndef = new NDEFReader();
 
       syncButton.addEventListener('click', event => {
-        ndefRead(ndef);
+        ndefSyncRead(ndef);
       });
     } catch (error) {
       nfcStatusP.innerText = 'Error: ' + error;

@@ -2,7 +2,7 @@
 
 const nfcStatusP = document.getElementById('nfc-status');
 
-export const ndefRead = async (ndef) => {
+export const ndefSyncRead = async (ndef) => {
   try {
     await ndef.scan();
     nfcStatusP.innerText = 'Sync started';
