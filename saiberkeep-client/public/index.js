@@ -28,8 +28,6 @@ const ndefSyncRead = async (ndef) => {
       } else {
         nfcStatusP.innerText = 'No NDEF records on implant/card';
       }
-      html = html + '</ul>';
-      nfcStatusP.innerHTML = html;
     });
   } catch (error) {
     nfcStatusP.innerText = 'Error: ' + error;
