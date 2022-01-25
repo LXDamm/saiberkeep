@@ -1,7 +1,10 @@
 const syncButtonElm = document.getElementById('sync-button');
+
+const syncReadEvent = new Event('syncread');
 class App {
     ndef = undefined;
     records = [];
+    syncing = false;
     constructor(ndef, textDecoder) {
         this.ndef = ndef;
         this.textDecoder = textDecoder;
@@ -18,15 +21,19 @@ class App {
     sync = async () => {
         this.setText('Beginning sync...');
         this.syncRead();
-        this.setText('Records read and saved');
-        this.records.forEach(record => {
-            console.log(record);
+        this.addEventListener('syncread', () => {
+            this.setText('Records read and saved');
+            this.records.forEach(record => {
+                console.log(record);
+            });
         });
     };
     syncRead = async () => {
+        this.syncing = true;
         await this.ndef.scan();
         this.ndef.addEventListener('readingerror', () => {
             this.setText('Error reading data from implant/card');
+            this.syncing = false;
         });
         this.ndef.addEventListener('reading', ({ message, serialNumber }) => {
             this.setText('NDEF data found, reading records...');
@@ -36,9 +43,11 @@ class App {
                         this.records.push(this.textDecoder.decode(record.data));
                     }
                 });
+                this.dispatchEvent(syncReadEvent);
             } else {
                 this.setText('Zero NDEF records on implant/card');
             }
+            this.syncing = false;
         });
     };
     syncWrite = async () => {};
