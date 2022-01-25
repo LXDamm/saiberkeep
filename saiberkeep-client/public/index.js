@@ -11,8 +11,8 @@ const ndefSyncRead = async (ndef) => {
       nfcStatusP.innerText = 'Error reading data from implant/card';
     });
 
-    ndef.addEventListener("reading", ({ nfcMessageData, serialNumber }) => {
-      nfcStatusP.innerText = nfcMessageData;
+    ndef.addEventListener("reading", ({ message, serialNumber }) => {
+      nfcStatusP.innerText = message;
     });
   } catch (error) {
     nfcStatusP.innerText = 'Error: ' + error;
