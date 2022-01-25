@@ -1,23 +1,18 @@
-const scanButton = document.getElementById('scan-button');
-const statusP = document.getElementById('status');
+const nfcStatusP = document.getElementById('nfc-status');
 
-scanButton.addEventListener("click", async () => {
-  statusP.innerText = 'User clicked scan button';
-
+export const ndefRead = async (ndef) => {
   try {
-    const ndef = new NDEFReader();
     await ndef.scan();
-    statusP.innerText = '> Scan started';
+    nfcStatusP.innerText = 'Sync started';
 
     ndef.addEventListener("readingerror", () => {
-        statusP.innerText = 'Argh! Cannot read data from the NFC tag. Try another one?';
+      nfcStatusP.innerText = 'Error reading data from implant/card';
     });
 
-    ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        statusP.innerText = `> Serial Number: ${serialNumber}`;
-        statusP.innerText = `> Records: (${message.records.length})`;
+    ndef.addEventListener("reading", ({ nfcMessageData, serialNumber }) => {
+      nfcStatusP.innerText = nfcMessageData;
     });
   } catch (error) {
-    statusP.innerText = 'Argh! ' + error;
+    nfcStatusP.innerText = 'Error: ' + error;
   }
-});
+};

@@ -1,39 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <button id="scan-button">Scan</button>
-    <p id="status"></p>
-    <script type="javascript" src="index.js"></script>
-    <!--<script>
-        const scanButton = document.getElementById('scan-button');
-        const status = document.getElementById('status');
 
-        scanButton.addEventListener("click", async () => {
-          status.innerText = 'User clicked scan button';
-        
-          try {
-            const ndef = new NDEFReader();
-            await ndef.scan();
-            status.innerText = '> Scan started';
-        
-            ndef.addEventListener("readingerror", () => {
-                status.innerText = 'Argh! Cannot read data from the NFC tag. Try another one?';
-            });
-        
-            ndef.addEventListener("reading", ({ message, serialNumber }) => {
-                status.innerText = `> Serial Number: ${serialNumber}`;
-                status.innerText = `> Records: (${message.records.length})`;
-            });
-          } catch (error) {
-            status.innerText = 'Argh! ' + error;
-          }
-        });
-    </script>-->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="sync-button">Sync implant/card</button>
+  <p id="nfc-status"></p>
+  <script type="module" src="index.js"></script>
+  <script>
+    const nfcStatusP = document.getElementById('nfc-status');
+    const syncButton = document.getElementById('sync-button');
+
+    try {
+      const ndef = new NDEFReader();
+      ndefRead(ndef);
+    } catch (error) {
+      nfcStatusP.innerText = 'Error';
+    }
+  </script>
 </body>
+
 </html>
