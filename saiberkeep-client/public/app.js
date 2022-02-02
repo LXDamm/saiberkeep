@@ -10,13 +10,16 @@ class App {
         this.ndef = ndef;
         this.decoder = decoder;
         this.encoder = encoder;
-        this.offlineData = { items: [{text: 'Hello World'}] };
     }
     setText = (text) => {
         const nfcStatus = document.getElementById('nfc-status');
         nfcStatus.innerText = text;
     };
-    run = () => {
+    init = () => {
+        this.offlineData = localStorage.getItem('saiberkeep-offline-data');
+        initButton.addEventListener('click', () => {
+            this.offlineData = { items: [{title: 'First', text: 'My first note'}]};
+        });
         syncToButton.addEventListener('click', () => {
             this.syncWrite();
         });
@@ -25,22 +28,21 @@ class App {
         });
     };
     syncRead = async () => {
-        this.setText('Starting scan, waiting for chip');
         await this.ndef.scan();
-        this.setText('Scan complete, reading from chip');
+        this.setText('Starting scan, waiting for chip');
         this.ndef.onreading = async ({message}) => {
+            this.setText('Chip read');
             message.records.forEach(record => {
                 if (record.recordType === 'mime' && record.mediaType === 'application/json') {
                     this.offlineData = JSON.parse(this.decoder.decode(record.data));
-                    console.log(this.offlineData);
+                    localStorage.setItem('saiberkeep-offline-data', this.offlineData);
                 }
             });
         }
     };
     syncWrite = async () => {
-        this.setText('Starting scan, waiting for chip');
         await this.ndef.scan();
-        this.setText('Scan complete, writing to chip');
+        this.setText('Starting scan, waiting for chip');
         this.ndef.onreading = async ({message}) => {
             const writeMessage = {
                 records: [{
@@ -53,6 +55,14 @@ class App {
             await this.ndef.write(writeMessage);
             this.setText('Write complete');
         }
+    };
+    renderList = () => {
+        const offlineList = document.getElementById('offline-list');
+        let html = '';
+        this.offlineData.items.forEach((item) => {
+            html = html + '<li>' + item.title + '</li>';
+        });
+        offlineList.innerHTML = html;
     };
 }
 

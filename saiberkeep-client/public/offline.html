@@ -19,6 +19,7 @@
   <p id="nfc-status">Hello 2</p>
   <button id="sync-to-button">Sync to chip</button>
   <button id="sync-from-button">Sync from chip</button>
+  <button id="init-button">Init data (testing)</button>
   <nav id="main-nav">
     <ul>
       <li><a href="online.html">Online storage</a></li>
@@ -39,7 +40,7 @@
         const decoder = new TextDecoder();
         const encoder = new TextEncoder();
         const app = new App(ndef, decoder, encoder);
-        app.run();
+        app.init();
       } catch (error) {
         errorStatusElm.innerText = 'Error: ' + error;
       }
