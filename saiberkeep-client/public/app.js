@@ -9,7 +9,7 @@ class App {
         this.ndef = ndef;
         this.decoder = decoder;
         this.encoder = encoder;
-        this.offlineData = { items: [{text}] };
+        this.offlineData = { items: [{text: 'Hello World'}] };
     }
     setText = (text) => {
         const nfcStatus = document.getElementById('nfc-status');
