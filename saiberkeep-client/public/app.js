@@ -10,8 +10,8 @@ class App {
         this.offlineData = { items: [{text}] };
     }
     setText = (text) => {
-        const statusTextElm = document.getElementById('status');
-        statusTextElm.innerText = text;
+        const nfcStatusElm = document.getElementById('nfc-status');
+        nfcStatusElm.innerText = text;
     };
     run = () => {
         const syncToButtonElm = document.getElementById('sync-to-button');
