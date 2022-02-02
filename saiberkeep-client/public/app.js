@@ -1,6 +1,3 @@
-const syncToButtonElm = document.getElementById('sync-to-button');
-const syncFromButtonElm = document.getElementById('sync-from-button');
-
 class App {
     ndef = undefined;
     constructor(ndef, decoder, encoder) {
@@ -13,7 +10,8 @@ class App {
         const statusTextElm = document.getElementById('status');
         statusTextElm.innerText = text;
     };
-    run = () => {
+    init = () => {
+        const syncToButtonElm = document.getElementById('sync-to-button');
         syncToButtonElm.addEventListener('click', () => {
             this.syncWrite();
         });
