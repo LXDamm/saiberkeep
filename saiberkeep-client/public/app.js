@@ -4,7 +4,7 @@ const syncFromButtonElm = document.getElementById('sync-from-button');
 const syncReadEvent = new Event('syncread');
 class App {
     ndef = undefined;
-    records = [];
+    offlineData = undefined;
     syncing = false;
     constructor(ndef, textDecoder, textEncoder, decoder, encoder) {
         this.ndef = ndef;
@@ -12,6 +12,7 @@ class App {
         this.textEncoder = textEncoder;
         this.decoder = decoder;
         this.encoder = encoder;
+        this.offlineData = { items: [{text}] };
     }
     setText = (text) => {
         const statusTextElm = document.getElementById('status');
@@ -68,8 +69,8 @@ class App {
                     id: 'saiber',
                     recordType: 'mime',
                     mediaType: 'application/json',
-                    data: this.encoder.encode(JSON.stringify(offlineData));
-                    }]
+                    data: this.encoder.encode(JSON.stringify(this.offlineData))
+                }]
             }
             await this.ndef.write(message);
         }
