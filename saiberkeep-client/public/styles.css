@@ -46,6 +46,10 @@ table {
 	border-spacing: 0;
 }
 
+body {
+	margin: 1rem;
+}
+
 #sync-button {
     width: 10rem;
     height: 4rem;
@@ -62,4 +66,8 @@ table {
 
 #offline-list li {
     display: inline-block
+}
+
+.offline-list-item-text {
+	display: none;
 }

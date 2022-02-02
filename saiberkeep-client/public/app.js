@@ -15,7 +15,10 @@ class App {
     initialize = () => {
         this.offlineData = localStorage.getItem('saiberkeep-offline-data');
         initButton.addEventListener('click', () => {
-            this.offlineData = { items: [{title: 'First', text: 'My first note'}]};
+            this.offlineData = { items: [
+                {title: 'First', text: 'My first note'},
+                {title: 'Second', text: 'This is my second, longer note'}
+            ]};
             this.renderList();
         });
         syncToButton.addEventListener('click', () => {
