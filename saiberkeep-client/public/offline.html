@@ -40,6 +40,7 @@
         const decoder = new TextDecoder();
         const encoder = new TextEncoder();
         const app = new App(ndef, decoder, encoder);
+        app.start();
       } catch (error) {
         errorStatusElm.innerText = 'Error: ' + error;
       }
