@@ -1,15 +1,10 @@
 const syncToButtonElm = document.getElementById('sync-to-button');
 const syncFromButtonElm = document.getElementById('sync-from-button');
 
-const syncReadEvent = new Event('syncread');
 class App {
     ndef = undefined;
-    offlineData = undefined;
-    syncing = false;
-    constructor(ndef, textDecoder, textEncoder, decoder, encoder) {
+    constructor(ndef, decoder, encoder) {
         this.ndef = ndef;
-        this.textDecoder = textDecoder;
-        this.textEncoder = textEncoder;
         this.decoder = decoder;
         this.encoder = encoder;
         this.offlineData = { items: [{text}] };
@@ -28,18 +23,20 @@ class App {
     syncRead = async () => {
     };
     syncWrite = async () => {
+        this.setText('Starting scan, waiting for chip');
         await this.ndef.scan();
-
+        this.setText('Scan complete, writing to chip');
         this.ndef.onreading = async ({message}) => {
             const writeMessage = {
                 records: [{
                     id: 'saiber',
                     recordType: 'mime',
                     mediaType: 'application/json',
-                    data: this.encoder.encode(JSON.stringify(this.offlineData))
+                    data: this.encoder.encode(JSON.stringify({'text': 'Saiberkeep data'}))
                 }]
             }
             await this.ndef.write(writeMessage);
+            this.setText('Write complete');
         }
     };
 }
