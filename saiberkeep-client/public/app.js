@@ -12,10 +12,11 @@ class App {
         this.decoder = decoder;
         this.encoder = encoder;
     }
-    start = () => {
+    initialize = () => {
         this.offlineData = localStorage.getItem('saiberkeep-offline-data');
         initButton.addEventListener('click', () => {
             this.offlineData = { items: [{title: 'First', text: 'My first note'}]};
+            this.renderList();
         });
         syncToButton.addEventListener('click', () => {
             this.syncWrite();

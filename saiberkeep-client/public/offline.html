@@ -12,7 +12,6 @@
 <body>
   <main>
       <ul id="offline-list">
-        <li><p>Fake</p><input class="offline-list-item-checkbox" type="checkbox"></li>
       </ul>
   </main>
   <p id="error-status">Hello 1</p>
@@ -40,7 +39,7 @@
         const decoder = new TextDecoder();
         const encoder = new TextEncoder();
         const app = new App(ndef, decoder, encoder);
-        app.start();
+        app.initialize();
       } catch (error) {
         errorStatusElm.innerText = 'Error: ' + error;
       }
