@@ -51,7 +51,7 @@ class App {
                     id: 'saiber',
                     recordType: 'mime',
                     mediaType: 'application/json',
-                    data: this.encoder.encode(JSON.stringify({'text': 'Saiberkeep data'}))
+                    data: this.encoder.encode(JSON.stringify(this.offlineData))
                 }]
             }
             await this.ndef.write(writeMessage);
