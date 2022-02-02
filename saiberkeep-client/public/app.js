@@ -10,12 +10,6 @@ class App {
         this.ndef = ndef;
         this.decoder = decoder;
         this.encoder = encoder;
-    }
-    setText = (text) => {
-        const nfcStatus = document.getElementById('nfc-status');
-        nfcStatus.innerText = text;
-    };
-    init = () => {
         this.offlineData = localStorage.getItem('saiberkeep-offline-data');
         initButton.addEventListener('click', () => {
             this.offlineData = { items: [{title: 'First', text: 'My first note'}]};
@@ -26,6 +20,10 @@ class App {
         syncFromButton.addEventListener('click', () => {
             this.syncRead();
         });
+    }
+    setText = (text) => {
+        const nfcStatus = document.getElementById('nfc-status');
+        nfcStatus.innerText = text;
     };
     syncRead = async () => {
         await this.ndef.scan();
