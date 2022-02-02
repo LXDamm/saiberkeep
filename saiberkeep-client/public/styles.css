@@ -65,7 +65,7 @@ body {
 }
 
 #offline-list li {
-    display: inline-block
+    display: block
 }
 
 .offline-list-item-text {
