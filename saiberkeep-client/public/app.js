@@ -64,7 +64,7 @@ class App {
         await this.ndef.scan();
 
         this.ndef.onreading = async ({message}) => {
-            const message = {
+            const writeMessage = {
                 records: [{
                     id: 'saiber',
                     recordType: 'mime',
@@ -72,7 +72,7 @@ class App {
                     data: this.encoder.encode(JSON.stringify(this.offlineData))
                 }]
             }
-            await this.ndef.write(message);
+            await this.ndef.write(writeMessage);
         }
     };
 }
