@@ -68,6 +68,10 @@ body {
     display: block
 }
 
+#offline-list li p {
+	display: inline-block;
+}
+
 .offline-list-item-text {
 	display: none;
 }
