@@ -10,7 +10,7 @@ class App {
         const statusTextElm = document.getElementById('status');
         statusTextElm.innerText = text;
     };
-    init = () => {
+    init = async () => {
         const syncToButtonElm = document.getElementById('sync-to-button');
         syncToButtonElm.addEventListener('click', () => {
             this.syncWrite();
