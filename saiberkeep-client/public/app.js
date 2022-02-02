@@ -13,13 +13,11 @@ class App {
         const statusTextElm = document.getElementById('status');
         statusTextElm.innerText = text;
     };
-    init = async () => {
+    run = () => {
         const syncToButtonElm = document.getElementById('sync-to-button');
         syncToButtonElm.addEventListener('click', () => {
             this.syncWrite();
         });
-    };
-    sync = async () => {
     };
     syncRead = async () => {
     };
