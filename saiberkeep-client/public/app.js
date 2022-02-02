@@ -1,5 +1,8 @@
 class App {
     ndef = undefined;
+    decoder = undefined;
+    encoder = undefined;
+    offlineData = undefined;
     constructor(ndef, decoder, encoder) {
         this.ndef = ndef;
         this.decoder = decoder;
