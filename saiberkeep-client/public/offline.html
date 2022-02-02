@@ -34,15 +34,15 @@
     const nfcStatusElm = document.getElementById('nfc-status');
 
     if ('NDEFReader' in window) {
-      try {
+      //try {
         const ndef = new NDEFReader();
         const decoder = new TextDecoder();
         const encoder = new TextEncoder();
         const app = new App(ndef, decoder, encoder);
         app.run();
-      } catch (error) {
-        errorStatusElm.innerText = 'Error: ' + error;
-      }
+      //} catch (error) {
+      //  errorStatusElm.innerText = 'Error: ' + error;
+      //}
     } else {
       nfcStatusElm.innerText = 'No NFC support, try a Android phone with NFC enabled and running latest Chrome Android';
     }
