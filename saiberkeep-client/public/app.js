@@ -1,4 +1,5 @@
 const syncToButton = document.getElementById('sync-to-button');
+const syncFromButton = document.getElementById('sync-from-button');
 
 class App {
     ndef = undefined;
@@ -18,6 +19,9 @@ class App {
     run = () => {
         syncToButton.addEventListener('click', () => {
             this.syncWrite();
+        });
+        syncFromButton.addEventListener('click', () => {
+            this.syncRead();
         });
     };
     syncRead = async () => {
