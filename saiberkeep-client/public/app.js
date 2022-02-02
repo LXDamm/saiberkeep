@@ -31,7 +31,8 @@ class App {
         this.ndef.onreading = async ({message}) => {
             message.records.forEach(record => {
                 if (record.recordType === 'mime' && record.mediaType === 'application/json') {
-                    this.setText(JSON.parse(this.decoder.decode(record.data)));
+                    this.offlineData = JSON.parse(this.decoder.decode(record.data));
+                    console.log(this.offlineData);
                 }
             });
         }
