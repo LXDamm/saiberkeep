@@ -1,3 +1,5 @@
+const syncToButton = document.getElementById('sync-to-button');
+
 class App {
     ndef = undefined;
     decoder = undefined;
@@ -10,12 +12,11 @@ class App {
         this.offlineData = { items: [{text}] };
     }
     setText = (text) => {
-        const nfcStatusElm = document.getElementById('nfc-status');
-        nfcStatusElm.innerText = text;
+        const nfcStatus = document.getElementById('nfc-status');
+        nfcStatus.innerText = text;
     };
     run = () => {
-        const syncToButtonElm = document.getElementById('sync-to-button');
-        syncToButtonElm.addEventListener('click', () => {
+        syncToButton.addEventListener('click', () => {
             this.syncWrite();
         });
     };
