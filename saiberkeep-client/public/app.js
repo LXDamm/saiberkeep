@@ -1,5 +1,6 @@
 const syncToButton = document.getElementById('sync-to-button');
 const syncFromButton = document.getElementById('sync-from-button');
+const initButton = document.getElementById('init-button');
 
 class App {
     ndef = undefined;
