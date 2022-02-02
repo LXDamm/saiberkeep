@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "build": "cp ./src/index.js ./public/index.js"
   },
   "devDependencies": {
   },
