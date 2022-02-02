@@ -21,6 +21,16 @@ class App {
         });
     };
     syncRead = async () => {
+        this.setText('Starting scan, waiting for chip');
+        await this.ndef.scan();
+        this.setText('Scan complete, reading from chip');
+        this.ndef.onreading = async ({message}) => {
+            message.records.forEach(record => {
+                if (record.recordType === 'mime' && record.mediaType === 'application/json') {
+                    this.setText(JSON.parse(this.decoder.decode(record.data)));
+                }
+            });
+        }
     };
     syncWrite = async () => {
         this.setText('Starting scan, waiting for chip');
