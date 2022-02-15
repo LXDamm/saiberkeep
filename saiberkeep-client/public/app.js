@@ -23,8 +23,9 @@ class App {
             this.renderList();
         });
         addItemButton.addEventListener('click', () => {
+            const title = document.getElementById('add-item-title').value;
             const text = document.getElementById('add-item-text').value;
-            this.offlineData.items.push(text);
+            this.offlineData.items.push({ title: title, text: text });
             this.renderList();
         });
         syncToButton.addEventListener('click', () => {
