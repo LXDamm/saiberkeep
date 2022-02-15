@@ -14,7 +14,7 @@ class App {
         this.encoder = encoder;
     }
     initialize = () => {
-        this.offlineData = localStorage.getItem('saiberkeep-offline-data');
+        this.offlineData = { items: [] };
         initButton.addEventListener('click', () => {
             this.offlineData = { items: [
                 {title: 'First', text: 'My first note'},
@@ -23,7 +23,7 @@ class App {
             this.renderList();
         });
         addItemButton.addEventListener('click', () => {
-            const text = document.getElementById('add-item-text').innerText;
+            const text = document.getElementById('add-item-text').value;
             this.offlineData.items.push(text);
             this.renderList();
         });
