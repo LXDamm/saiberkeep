@@ -72,7 +72,7 @@ class App {
         const offlineList = document.getElementById('offline-list');
         let html = '';
         this.offlineData.items.forEach((item) => {
-            html = html + '<li><div class="offline-list-item"><p class="offline-list-item-title">' + item.title + '</p><p class="offline-list-item-text">' + item.text + '</p></div></li>';
+            html = html + '<li><div class="offline-list-item"><p class="offline-list-item-title">' + item.title + ': </p><p class="offline-list-item-text">' + item.text + '</p></div></li>';
         });
         offlineList.innerHTML = html;
     };
