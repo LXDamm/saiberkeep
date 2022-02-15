@@ -24,7 +24,7 @@ class App {
         });
         addItemButton.addEventListener('click', () => {
             const text = document.getElementById('add-item-text').innerText;
-            this.offlineData.push(text);
+            this.offlineData.items.push(text);
             this.renderList();
         });
         syncToButton.addEventListener('click', () => {
