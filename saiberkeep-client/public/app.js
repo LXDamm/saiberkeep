@@ -1,3 +1,4 @@
+const addItemButton = document.getElementById('add-item-button');
 const syncToButton = document.getElementById('sync-to-button');
 const syncFromButton = document.getElementById('sync-from-button');
 const initButton = document.getElementById('init-button');
@@ -19,6 +20,11 @@ class App {
                 {title: 'First', text: 'My first note'},
                 {title: 'Second', text: 'This is my second, longer note'}
             ]};
+            this.renderList();
+        });
+        addItemButton.addEventListener('click', () => {
+            const text = document.getElementById('add-item-text').innerText;
+            this.offlineData.push(text);
             this.renderList();
         });
         syncToButton.addEventListener('click', () => {
