@@ -47,7 +47,7 @@ class App {
             message.records.forEach(record => {
                 if (record.recordType === 'mime' && record.mediaType === 'application/json') {
                     this.offlineData = JSON.parse(this.decoder.decode(record.data));
-                    localStorage.setItem('saiberkeep-offline-data', this.offlineData);
+                    this.renderList();
                 }
             });
         }
