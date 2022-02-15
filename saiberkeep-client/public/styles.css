@@ -65,7 +65,9 @@ body {
 }
 
 #offline-list li {
-    display: block
+    display: block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 #offline-list li p {
